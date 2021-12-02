@@ -1,7 +1,7 @@
 # **Praktikum Modul 2**
 
 ### Fairuzrizqi Nugraharsanto (1202190044)
-### Budhi Priambodo (1202192...)
+### Budhi Priambodo (1202192065)
 
 ---
 
@@ -139,15 +139,13 @@
 
 - Langkah pertama yang harus dilakukan yakni menginstall laravel  menggunakan ansible. Setelah menginstall, masuk ke ansible tersebut dan buatlah folder laravel
 
-  <p align="center">
         	![20](https://user-images.githubusercontent.com/61863147/144441684-ff34a07b-69de-4753-99fc-6ffb6f93b3fe.PNG)
-  </p>		
-  
+
   
 - Selanjutnya, buat host untuk lxc yang nanti akan di otomasi
 
-  <p align="center">      ![21](https://user-images.githubusercontent.com/61863147/144441808-d6454fc4-e5cd-4e05-8a34-71b11a902a11.PNG)
-  </p>   
+  ![21](https://user-images.githubusercontent.com/61863147/144441808-d6454fc4-e5cd-4e05-8a34-71b11a902a11.PNG)
+
 
    
 
@@ -158,8 +156,6 @@
   ```
 
   * Buatlah directory serta apapun yang akan digunakan untuk menjalankan folder php dan lakukan instalasi
-
-    <p align="center">
           	
     ![WhatsApp Image 2021-12-02 at 9 33 51 PM](https://user-images.githubusercontent.com/61863147/144442200-e1da5123-f90b-4f9e-99f6-d87a9c444b49.jpeg)
 
@@ -212,10 +208,8 @@
 
   - Jika instalasi telah selesai dilakukan, buat folder installcomposer.yml
 
-    <p align="center">
           	![WhatsApp Image 2021-12-02 at 9 34 41 PM](https://user-images.githubusercontent.com/61863147/144442376-7d7268cd-0f60-4144-b554-7b5da7b4a3d2.jpeg)
-    </p>
-    
+
     
 
 
@@ -288,18 +282,14 @@
   
 
   - Lakukan instalasi kembali
-
-    <p align="center">
+  
           	![2021-11-30_6](https://user-images.githubusercontent.com/61863147/144442932-4960a69b-a892-4e5c-b4cd-1e532bfd4165.png)
 
-    </p>
 
   - Buatlah file lxc_landing.dev
 
-    <p align="center">
           	![22](https://user-images.githubusercontent.com/61863147/144443067-3965ad39-c88f-4250-9035-0f9763871e9c.PNG)
 
-    </p>
 
     ```
     server {
@@ -328,8 +318,8 @@
 
   - Buatlah file config.yml
 
-    <p align="center">   ![23](https://user-images.githubusercontent.com/61863147/144443120-2b2ad19d-4db6-4943-b5f3-62386ce1ad29.PNG)
-     </p>
+   ![23](https://user-images.githubusercontent.com/61863147/144443120-2b2ad19d-4db6-4943-b5f3-62386ce1ad29.PNG)
+ 
 
     
 
@@ -383,8 +373,8 @@
 
   - Lakukan instalasi
 
-    <p align="center">    ![24](https://user-images.githubusercontent.com/61863147/144443261-e6ca8f84-3d87-4ec4-8db7-92eba8f2da3e.PNG)
-   </p>
+       ![24](https://user-images.githubusercontent.com/61863147/144443261-e6ca8f84-3d87-4ec4-8db7-92eba8f2da3e.PNG)
+
 
     
 
@@ -392,8 +382,8 @@
 
   - Cek dengan cara membuka vm.local. Jika sukses, maka tampilannya akan seperti berikut ini :
 
-    <p align="center"> ![25](https://user-images.githubusercontent.com/61863147/144443323-1fe9ff51-0a6f-481e-8364-80974108f3dd.PNG)
-      </p>
+  ![25](https://user-images.githubusercontent.com/61863147/144443323-1fe9ff51-0a6f-481e-8364-80974108f3dd.PNG)
+      
     
     
 
@@ -402,19 +392,17 @@
 4. vm.local/blog
 
    - Seperti pada nomor sebelumnya, langkah pertama dimulai dengan masuk pada folder ansible
-
-     <p align="center">
+   - 
            	![WhatsApp Image 2021-12-02 at 9 41 20 PM](https://user-images.githubusercontent.com/61863147/144443674-b3136603-7e6c-498d-bdbf-20c4a2c1ec7f.jpeg)
 
-     </p>
+   
      
      
    - Buat host untuk lxc yang nanti akan di otomasi
-   
-     <p align="center">
+    
            ![26](https://user-images.githubusercontent.com/61863147/144443579-52b51a5c-e728-4c9f-afa5-92634e001bda.PNG)
 
-     </p>
+
    
    ```
    [blog]
@@ -425,10 +413,7 @@
    
    - Buat direktori untuk tasks,templates dan handlers di folder wordpress. Lalu, masuk ke dalam folder tasks untuk menginstall paket
    
-     <p align="center">
            ![27](https://user-images.githubusercontent.com/61863147/144443757-e268b7a1-7485-45cb-a8a8-4f2a4007d8dc.PNG)
-
-     </p>
    
    ```
    ---
@@ -528,11 +513,10 @@
    
    
    - Kemudian, masuk ke dalam templates wp.conf yang merupakan tempat configuration pada wordpress
-   
-     <p align="center">
+  
           ![28](https://user-images.githubusercontent.com/61863147/144443813-d9b82e9c-98be-42f9-9c4a-d71751024e72.PNG)
 
-     </p>
+  
    
      
    
@@ -643,10 +627,7 @@
    
    - Masuk ke dalam templates wordpress.conf
    
-     <p align="center">
         ![29](https://user-images.githubusercontent.com/61863147/144443861-7c887fa6-a569-4dd2-8e22-1779d2bdb8d7.PNG)
-
-     </p>
    
      ```
      server {
@@ -684,32 +665,20 @@
    
      - Jalankan ansible kembali untuk menginstall
    
-       <p align="center">
             ![30](https://user-images.githubusercontent.com/61863147/144443991-095f3c89-b039-430a-bf64-23d67a0110dd.PNG)
-
-       </p>
    
      
    
    - Buka vm.local/blog untuk melakukan checking apakah wordpressnya sudah dapat dijalankan atau belum. Jika sudah dapat dijalankan, maka tampilannya akan berubah menjadi berikut :
    
-     <p align="center">
+
            	![31](https://user-images.githubusercontent.com/61863147/144444084-53581b08-4d22-4c88-8cb2-3b831c557c93.PNG)
 
-     </p>
    
-     <p align="center">
            ![33](https://user-images.githubusercontent.com/61863147/144444144-670aee04-5810-4b06-9880-8492f3d8b10e.PNG)
 
-     </p>
-     
-     <p align="center">
+
            ![34](https://user-images.githubusercontent.com/61863147/144444175-fa8b4586-a069-46cc-b555-4bd0e239d916.PNG)
 
-     </p>
      
-     <p align="center">
            ![35](https://user-images.githubusercontent.com/61863147/144444207-9370b548-f8a4-4091-b07e-bb8c83945cc2.PNG)
-
-     </p>
-     
