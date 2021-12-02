@@ -392,8 +392,8 @@
 4. vm.local/blog
 
    - Seperti pada nomor sebelumnya, langkah pertama dimulai dengan masuk pada folder ansible
-   - 
-           	![WhatsApp Image 2021-12-02 at 9 41 20 PM](https://user-images.githubusercontent.com/61863147/144443674-b3136603-7e6c-498d-bdbf-20c4a2c1ec7f.jpeg)
+  
+     ![WhatsApp Image 2021-12-02 at 9 41 20 PM](https://user-images.githubusercontent.com/61863147/144443674-b3136603-7e6c-498d-bdbf-20c4a2c1ec7f.jpeg)
 
    
      
