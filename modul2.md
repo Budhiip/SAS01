@@ -139,7 +139,7 @@
 
 - Langkah pertama yang harus dilakukan yakni menginstall laravel  menggunakan ansible. Setelah menginstall, masuk ke ansible tersebut dan buatlah folder laravel
 
-        	![20](https://user-images.githubusercontent.com/61863147/144441684-ff34a07b-69de-4753-99fc-6ffb6f93b3fe.PNG)
+   ![20](https://user-images.githubusercontent.com/61863147/144441684-ff34a07b-69de-4753-99fc-6ffb6f93b3fe.PNG)
 
   
 - Selanjutnya, buat host untuk lxc yang nanti akan di otomasi
@@ -208,7 +208,7 @@
 
   - Jika instalasi telah selesai dilakukan, buat folder installcomposer.yml
 
-          	![WhatsApp Image 2021-12-02 at 9 34 41 PM](https://user-images.githubusercontent.com/61863147/144442376-7d7268cd-0f60-4144-b554-7b5da7b4a3d2.jpeg)
+    ![WhatsApp Image 2021-12-02 at 9 34 41 PM](https://user-images.githubusercontent.com/61863147/144442376-7d7268cd-0f60-4144-b554-7b5da7b4a3d2.jpeg)
 
     
 
@@ -283,12 +283,12 @@
 
   - Lakukan instalasi kembali
   
-          	![2021-11-30_6](https://user-images.githubusercontent.com/61863147/144442932-4960a69b-a892-4e5c-b4cd-1e532bfd4165.png)
+      ![2021-11-30_6](https://user-images.githubusercontent.com/61863147/144442932-4960a69b-a892-4e5c-b4cd-1e532bfd4165.png)
 
 
   - Buatlah file lxc_landing.dev
 
-          	![22](https://user-images.githubusercontent.com/61863147/144443067-3965ad39-c88f-4250-9035-0f9763871e9c.PNG)
+       ![22](https://user-images.githubusercontent.com/61863147/144443067-3965ad39-c88f-4250-9035-0f9763871e9c.PNG)
 
 
     ```
@@ -400,7 +400,7 @@
      
    - Buat host untuk lxc yang nanti akan di otomasi
     
-           ![26](https://user-images.githubusercontent.com/61863147/144443579-52b51a5c-e728-4c9f-afa5-92634e001bda.PNG)
+       ![26](https://user-images.githubusercontent.com/61863147/144443579-52b51a5c-e728-4c9f-afa5-92634e001bda.PNG)
 
 
    
@@ -413,7 +413,7 @@
    
    - Buat direktori untuk tasks,templates dan handlers di folder wordpress. Lalu, masuk ke dalam folder tasks untuk menginstall paket
    
-           ![27](https://user-images.githubusercontent.com/61863147/144443757-e268b7a1-7485-45cb-a8a8-4f2a4007d8dc.PNG)
+       ![27](https://user-images.githubusercontent.com/61863147/144443757-e268b7a1-7485-45cb-a8a8-4f2a4007d8dc.PNG)
    
    ```
    ---
@@ -514,7 +514,7 @@
    
    - Kemudian, masuk ke dalam templates wp.conf yang merupakan tempat configuration pada wordpress
   
-          ![28](https://user-images.githubusercontent.com/61863147/144443813-d9b82e9c-98be-42f9-9c4a-d71751024e72.PNG)
+       ![28](https://user-images.githubusercontent.com/61863147/144443813-d9b82e9c-98be-42f9-9c4a-d71751024e72.PNG)
 
   
    
@@ -665,20 +665,20 @@
    
      - Jalankan ansible kembali untuk menginstall
    
-            ![30](https://user-images.githubusercontent.com/61863147/144443991-095f3c89-b039-430a-bf64-23d67a0110dd.PNG)
+         ![30](https://user-images.githubusercontent.com/61863147/144443991-095f3c89-b039-430a-bf64-23d67a0110dd.PNG)
    
      
    
    - Buka vm.local/blog untuk melakukan checking apakah wordpressnya sudah dapat dijalankan atau belum. Jika sudah dapat dijalankan, maka tampilannya akan berubah menjadi berikut :
    
 
-           	![31](https://user-images.githubusercontent.com/61863147/144444084-53581b08-4d22-4c88-8cb2-3b831c557c93.PNG)
+    	![31](https://user-images.githubusercontent.com/61863147/144444084-53581b08-4d22-4c88-8cb2-3b831c557c93.PNG)
 
    
-           ![33](https://user-images.githubusercontent.com/61863147/144444144-670aee04-5810-4b06-9880-8492f3d8b10e.PNG)
+      ![33](https://user-images.githubusercontent.com/61863147/144444144-670aee04-5810-4b06-9880-8492f3d8b10e.PNG)
 
 
-           ![34](https://user-images.githubusercontent.com/61863147/144444175-fa8b4586-a069-46cc-b555-4bd0e239d916.PNG)
+      ![34](https://user-images.githubusercontent.com/61863147/144444175-fa8b4586-a069-46cc-b555-4bd0e239d916.PNG)
 
      
-           ![35](https://user-images.githubusercontent.com/61863147/144444207-9370b548-f8a4-4091-b07e-bb8c83945cc2.PNG)
+      ![35](https://user-images.githubusercontent.com/61863147/144444207-9370b548-f8a4-4091-b07e-bb8c83945cc2.PNG)
