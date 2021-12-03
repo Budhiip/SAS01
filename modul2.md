@@ -683,3 +683,142 @@
 
      
       ![35](https://user-images.githubusercontent.com/61863147/144444207-9370b548-f8a4-4091-b07e-bb8c83945cc2.PNG)
+      
+      
+      
+      ## **Soal  Tambahan**
+
+1.  Laravel
+
+   - Pertama, ganti konfigurasi file lxc_landing 
+     ![Picture1](https://user-images.githubusercontent.com/61863147/144595036-60d59a0e-0c52-49fb-8879-1882284b66d5.png)
+
+
+   * Dan ubah seperti gambar dibawah ini :
+
+     ![Picture2](https://user-images.githubusercontent.com/61863147/144595083-f43e258f-fb01-45a8-98ee-5d4dddccf5e1.png)
+
+   
+
+   * Buatlah ansible soal2
+     ![Picture3](https://user-images.githubusercontent.com/61863147/144595097-b2beda75-ad8a-446c-9057-ec4f63b6611b.png)
+
+
+   * Jalankan ansible
+
+     ![Picture4](https://user-images.githubusercontent.com/61863147/144595221-a5f905f1-6d69-4ba4-91f7-6d8dbeb43b25.png)
+
+     ```markdown
+     ---
+     - hosts: all
+       become : yes
+       tasks:
+        - name: mengganti php sock
+          lineinfile:
+           path: /etc/php/7.4/fpm/pool.d/www.conf
+           regexp: '^(.*)listen =(.*)$'
+           line: 'listen = 127.0.0.1:9001'
+           backrefs: yes
+        - name: copy the nginx config file 
+          copy:
+           src: ~/ansible/laravel/lxc_landing.dev
+           dest: /etc/nginx/sites-available/lxc_landing.dev
+        - name: Symlink lxc_landing.dev
+          command: ln -sfn /etc/nginx/sites-available/lxc_landing.dev /etc/nginx/sites-enabled/lxc_landing.dev
+          args:
+           warn: false
+        - name: restart nginx
+          service:
+           name: nginx
+           state: restarted
+        - name: restart php7
+          service:
+           name: php7.4-fpm
+           state: restarted
+        - name: curl web
+          command: curl -i http://lxc_landing.dev
+          args:
+           warn: false
+     © 2021 GitHub, Inc.
+     Terms
+     Priv
+     ```
+
+   ![Picture5](https://user-images.githubusercontent.com/61863147/144595264-ea032743-dc3b-423c-9cee-3fd0849f4ebf.png)
+
+
+   * Cek dengan cara membuka vm.local. Jika sukses, maka tampilannya akan seperti berikut ini :
+
+   ![Picture6](https://user-images.githubusercontent.com/61863147/144595302-7413e2a0-8382-41c4-97b8-2cb806979d0e.png)
+
+   
+
+2. Wordpress
+
+   - Pada langkah pertama, lakukan hal yang sama seperti langkah pertama pada laravel. Yakni ganti konfigurasi file menjadi wordpress.conf
+
+     ![Picture7](https://user-images.githubusercontent.com/61863147/144595359-420a596d-94ec-4449-b1ef-9f1bbd072ef9.png)
+
+
+   
+
+   * Dan ubah seperti gambar di bawah ini :
+
+     ![Picture8](https://user-images.githubusercontent.com/61863147/144595376-112112e8-9ff2-4fcd-a71f-77761dc03c55.png)
+
+
+   
+
+   * Buatlah ansible soal2
+
+     ![Picture9](https://user-images.githubusercontent.com/61863147/144595412-0a81a94b-40da-4f94-bd00-3aa6a72c6701.png)
+
+
+   
+
+   * Jalankan ansible
+
+     ![Picture10](https://user-images.githubusercontent.com/61863147/144595443-325f4a5a-03bc-4ea7-a485-a823e21d16f8.png)
+
+
+```
+---
+- hosts: all
+  become : yes
+  tasks:
+   - name: mengganti php sock
+     lineinfile:
+      path: /etc/php/7.4/fpm/pool.d/www.conf
+      regexp: '^(.*)listen =(.*)$'
+      line: 'listen = 127.0.0.1:9001'
+      backrefs: yes
+   - name: copy the nginx config file 
+     copy:
+      src: ~/ansible/wordpress/wordpress.conf
+      dest: /etc/nginx/sites-available/lxc_php7.dev
+   - name: Symlink lxc_php7.dev
+     command: ln -sfn /etc/nginx/sites-available/lxc_php7.dev /etc/nginx/sites-enabled/lxc_php7.dev
+     args:
+      warn: false
+   - name: restart nginx
+     service:
+      name: nginx
+      state: restarted
+   - name: restart php7
+     service:
+      name: php7.4-fpm
+      state: restarted
+   - name: curl web
+     command: curl -i http://lxc_php7.dev
+     args:
+      warn: false
+```
+![Picture11](https://user-images.githubusercontent.com/61863147/144595495-1843bee4-0380-493b-b9f2-3bfa16597b13.png)
+
+
+
+* Cek dengan cara membuka vm.local/blog Jika sukses, maka tampilannya akan seperti berikut ini :
+
+ ![Picture12](https://user-images.githubusercontent.com/61863147/144595541-557a1d80-f359-4291-ac67-d0011f6d7b9f.png)
+
+
