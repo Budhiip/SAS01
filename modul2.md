@@ -413,7 +413,8 @@
    
    - Buat direktori untuk tasks,templates dan handlers di folder wordpress. Lalu, masuk ke dalam folder tasks untuk menginstall paket
    
-       ![27](https://user-images.githubusercontent.com/61863147/144443757-e268b7a1-7485-45cb-a8a8-4f2a4007d8dc.PNG)
+      ![WhatsApp Image 2021-12-03 at 7 53 17 AM](https://user-images.githubusercontent.com/61863147/144526278-ae1eaa6f-0275-43b8-9239-79250db144fd.jpeg)
+
    
    ```
    ---
