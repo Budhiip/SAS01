@@ -691,6 +691,9 @@
 1.  Laravel
 
    - Pertama, ganti konfigurasi file lxc_landing 
+
+
+
      ![Picture1](https://user-images.githubusercontent.com/61863147/144595036-60d59a0e-0c52-49fb-8879-1882284b66d5.png)
 
 
@@ -701,6 +704,8 @@
    
 
    * Buatlah ansible soal2
+
+
      ![Picture3](https://user-images.githubusercontent.com/61863147/144595097-b2beda75-ad8a-446c-9057-ec4f63b6611b.png)
 
 
