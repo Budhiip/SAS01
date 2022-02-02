@@ -65,13 +65,15 @@ Praktikum dilaksanakan berdasarkan keadaan yang tertera pada FINAL PROJECT, dan 
 
       - nano /etc/hosts
 
-      ![4d63a659-9d10-4376-9f9d-a9e7317898c1](https://user-images.githubusercontent.com/93067781/151665341-24f23072-789e-4e04-97c5-39c8751f5230.jpg)
+      
+
 
     - Setting IP Static for all off containers until this allow picture
 
       - If have set each containers check the IP containers in VM ubuntu server with command : lxc-ls -f
+      ![WhatsApp Image 2022-02-03 at 4 21 59 AM](https://user-images.githubusercontent.com/61863147/152253658-9b0fc497-48bb-4c4a-a75c-ecb38715b1b8.jpeg)
 
-      ![4bd93110-7a7b-412f-8979-0b556d747a3c](https://user-images.githubusercontent.com/93067781/151665457-a40ec96a-f6f4-4cb7-80f6-bd9570a52aff.jpg)
+     
 
     - Configuration lxc_db_server, lxc_php5_1, lxc_php5_2, lxc_php7_1, lxc_php7_2, lxc_php7_3,  lxc_php7_4, lxc_php7_5 and lxc_php7_6 like this commands below
 
@@ -117,7 +119,7 @@ Praktikum dilaksanakan berdasarkan keadaan yang tertera pada FINAL PROJECT, dan 
 
     - Creating hosts and adding script
 
-    ![ba94bcf4-2e69-43e7-b14a-dbdb91ef7a87](https://user-images.githubusercontent.com/93067781/151647679-806dcaeb-6e62-4096-a910-74f0da06903d.jpg)
+    ![WhatsApp Image 2022-02-03 at 4 26 49 AM](https://user-images.githubusercontent.com/61863147/152253977-c5ecb103-fd60-4adf-9225-c835833b2391.jpeg)
 
     
 
@@ -127,7 +129,7 @@ Praktikum dilaksanakan berdasarkan keadaan yang tertera pada FINAL PROJECT, dan 
    hosts: database
    vars:
      username: 'admin'
-     password: 'admin'
+     password: '123'
      domain: 'lxc_mariadb.dev'
    roles:
       - db
@@ -145,79 +147,11 @@ Praktikum dilaksanakan berdasarkan keadaan yang tertera pada FINAL PROJECT, dan 
 
    - Creating main.yml in roles/db/tasks and adding script configuration
      - nano roles/db/tasks/main.yml
+    
+   ![WhatsApp Image 2022-02-03 at 4 41 51 AM](https://user-images.githubusercontent.com/61863147/152254132-af526a59-caa5-448d-9992-c7b38593652a.jpeg)
+   ![WhatsApp Image 2022-02-03 at 4 42 19 AM](https://user-images.githubusercontent.com/61863147/152254148-357230d5-db2c-4ab2-beac-9d0671eb8177.jpeg)
+   ![WhatsApp Image 2022-02-03 at 4 42 59 AM](https://user-images.githubusercontent.com/61863147/152254156-474002a7-34b5-4c16-817d-0b65110a1b4b.jpeg)
 
-   ```markdown
-   ---
-   - name: delete apt chache
-         become: yes
-         become_user: root
-         become_method: su
-         command: rm -vf /var/lib/apt/lists/*
-   - name: install mariadb
-         become: yes
-         become_user: root
-         become_method: su
-         apt: name={{ item }} state=latest update_cache=true
-         with_items:
-          - python
-          - mariadb-server
-          - python-mysqldb
-          - python-pymysql
-   
-   - name: Stop MySQL
-         service: name=mysqld state=stopped
-   
-   - name: set environment variables
-         shell: systemctl set-environment MYSQLD_OPTS="--skip-grant-tables"
-   
-   - name: Start MySQL
-         service: name=mysqld state=started
-   
-   - name: sql query
-         command:  mysql -u root --execute="UPDATE mysql.user SET authentication_string = PASSWORD('{{ password }}') WHERE User = 'root' AND Host = 'localhost';"
-         
-   - name: sql query flush
-         command:  mysql -u root --execute="FLUSH PRIVILEGES"
-         
-   - name: Stop MySQL
-         service: name=mysqld state=stopped
-         
-   - name: unset environment variables
-         shell: systemctl unset-environment MYSQLD_OPTS
-         
-   - name: Start MySQL
-         service: name=mysqld state=started
-         
-   - name: Create user for mysql
-         command:  mysql -u root --execute="CREATE USER IF NOT EXISTS '{{ username }}'@'localhost' IDENTIFIED BY '{{ password }}';"
-   
-   - name: GRANT ALL PRIVILEGES to user {{username}}
-         command:  mysql -u root --execute="GRANT ALL PRIVILEGES ON * . * TO '{{ username }}'@'localhost';"
-   
-   - name: Create user for remote mysql
-         command:  mysql -u root --execute="CREATE USER IF NOT EXISTS '{{ username }}'@'%' IDENTIFIED BY '{{ password }}';"
-   
-   - name: GRANT ALL PRIVILEGES to remote user {{username}}
-         command:  mysql -u root --execute="GRANT ALL PRIVILEGES ON * . * TO '{{ username }}'@'%';"
-         
-   - name: sql query flush
-         command:  mysql -u root --execute="FLUSH PRIVILEGES"
-         
-   - name: Create DB Landing
-         command:  mysql -u root --execute="CREATE DATABASE IF NOT EXISTS `landing`;"
-   
-   - name: Create DB blog
-         command:  mysql -u root --execute="CREATE DATABASE IF NOT EXISTS `blog`;"
-   
-   - name: Create DB app
-         command:  mysql -u root --execute="CREATE DATABASE IF NOT EXISTS `app`;"
-   
-   - name: Copy .my.cnf file with root password credentials
-         template: 
-           src=templates/my.cnf 
-           dest=/etc/mysql/mariadb.conf.d/50-server.cnf
-         notify: restart mysql
-   ```
 
    - Creating my.cnf in roles/db/templates and adding script configuration
      - nano roles/db/templates/my.cnf
@@ -377,20 +311,8 @@ Praktikum dilaksanakan berdasarkan keadaan yang tertera pada FINAL PROJECT, dan 
    ```markdown
    ansible-playbook -i hosts install-mariadb.yml -k
    ```
+   ![WhatsApp Image 2022-02-03 at 4 45 43 AM](https://user-images.githubusercontent.com/61863147/152254319-9730c65f-685b-4f7a-ad96-1127ac2b0a50.jpeg)
 
-   - Checking, if mariadb has installed in lxc_db_server
-
-   ```markdown
-   ssh root@lxc_db_server.dev
-   mysql -u admin -p
-   show databases;
-   ```
-
-   
-
-   ![Ansible SS1](https://user-images.githubusercontent.com/93067781/151578294-ea382d28-0c93-4290-ae03-3958105d413a.jpg)
-
-   
 
 4. Creating install-ci.yml file and adding configuration
 
@@ -591,113 +513,80 @@ Praktikum dilaksanakan berdasarkan keadaan yang tertera pada FINAL PROJECT, dan 
      - nano roles/wp/tasks
 
    ```markdown
-   ---
-   - name: delete apt chache
-     become: yes
-     become_user: root
-     become_method: su
-     command: rm -vf /var/lib/apt/lists/*
-   
-   - name: install php
-     become: yes
-     become_user: root
-     become_method: su
-     apt: name={{ item }} state=latest update_cache=true
-     with_items:
-       - nginx
-       - nginx-extras
-       - php7.4
-       - php7.4-fpm
-       - php7.4-curl
-       - php7.4-xml
-       - php7.4-gd
-       - php7.4-opcache
-       - php7.4-mbstring
-       - php7.4-zip
-       - php7.4-json
-       - php7.4-cli
-       - php7.4-mysqlnd
-       - php7.4-xmlrpc
-       - php7.4-curl
-       - wget
-       - curl
-       - bind9
-       - dnsutils
-   
-   - name: wget wordpress
-     shell: wget -c http://wordpress.org/latest.tar.gz
-   
-   - name: tar xvzf
-     shell: tar -xvzf latest.tar.gz
-   
-   - name: make page
-     shell: cp -R wordpress /var/www/html/blog
-   
-   - name: chmod
-     become: yes
-     become_user: root
-     become_method: su
-     command: chmod 775 -R /var/www/html/blog/
-   
-   - name: Copy .wp-config.conf
-     template:
-       src=templates/wp.conf
-       dest=/var/www/html/blog/wp-config.php
-   
-   - name: Copy wp.local
-     template:
-       src=templates/wp.local
-       dest=/etc/nginx/sites-available/{{ domain }}
-     vars:
-       servername: '{{ domain }}'
-   
-   - name: Symlink wp.local
-     command: ln -sfn /etc/nginx/sites-available/{{ domain }} /etc/nginx/sites-enabled/{{ domain }}
-     notify:
-       - restart nginx
-   
-   - name: Write {{ domain }} to /etc/hosts
-     lineinfile:
-       dest: /etc/hosts
-       regexp: '.*{{ domain }}$'
-       line: "127.0.0.1 {{ domain }}"
-       state: present
-   
-   - name: enable module php mbstring
-     command: phpenmod mbstring
-     notify:
-       - restart php
-   - name: creates directory
-     file:
-      path: /var/www/html/news/wp
-      state: directory
-   
-   - name: copy conf.local
-     template:
-       src=templates/named.conf.local
-       dest=/var/www/html/news/wp
-     notify:
-      - restart bind
-   
-   - name: copy kelompok7.fpas
-     template:
-       src=templates/kelompok7.fpas
-       dest=/var/www/html/news/wp
-     notify:
-      - restart bind
-   
-   - name: copy 43.168.192
-     template:
-       src=templates/43.168.192.in-addr.arpa
-       dest=/var/www/html/news/wp
-     notify:
-      - restart bind
-   - name: copy named.conf
-     template:
-       src=templates/named.conf.options
-       dest=/var/www/html/news/wp
-     notify:
-      - restart bind
+  ---
+  - name: delete apt chache
+  become: yes
+  become_user: root
+  become_method: su
+  command: rm -vf /var/lib/apt/lists/*
+
+  - name: install php
+    become: yes
+    become_user: root
+    become_method: su
+    apt: name={{ item }} state=latest update_cache=true
+    with_items:
+      - nginx
+      - nginx-extras
+      - php7.4
+      - php7.4-fpm
+      - php7.4-curl
+      - php7.4-xml
+      - php7.4-gd
+      - php7.4-opcache
+      - php7.4-mbstring
+      - php7.4-zip
+      - php7.4-json
+      - php7.4-cli
+      - php7.4-mysqlnd
+      - php7.4-xmlrpc
+      - php7.4-curl
+      - wget
+      - curl
+
+  - name: wget wordpress
+    shell: wget -c http://wordpress.org/latest.tar.gz
+ 
+  - name: tar xvzf
+    shell: tar -xvzf latest.tar.gz
+
+  - name: make page
+    shell: cp -R wordpress /var/www/html/blog
+
+  - name: chmod
+    become: yes
+    become_user: root
+    become_method: su
+    command: chmod 775 -R /var/www/html/blog/
+
+  - name: Copy .wp-config.conf
+    template:
+      src=templates/wp.conf
+      dest=/var/www/html/blog/wp-config.php
+
+  - name: Copy wp.local
+    template:
+      src=templates/wp.local
+      dest=/etc/nginx/sites-available/{{ domain }}
+    vars:
+      servername: '{{ domain }}'
+
+  - name: Symlink wp.local
+    command: ln -sfn /etc/nginx/sites-available/{{ domain }} /etc/nginx/sites-enabled/{{ domain }}
+    notify:
+      - restart nginx
+
+  - name: Write {{ domain }} to /etc/hosts
+    lineinfile:
+      dest: /etc/hosts
+      regexp: '.*{{ domain }}$'
+      line: "127.0.0.1 {{ domain }}"
+      state: present
+
+  - name: enable module php mbstring
+    command: phpenmod mbstring
+    notify:
+      - restart php
    ```
 
    - Creating wp.conf in roles/wp/templates and adding script configuration
@@ -834,98 +723,6 @@ Praktikum dilaksanakan berdasarkan keadaan yang tertera pada FINAL PROJECT, dan 
    }
    ```
 
-   - Creating 43.168.192.in-addr.arpa in roles/wp/templates and adding script configuration
-     - nano roles/wp/templates/43.168.192.in-addr.arpa
-
-   ```markdown
-   ;
-   ; BIND reverse data file loopback interface
-   ;
-   $TTL    604800
-   @       IN      SOA     kelompok7.fpas. root.kelompok7.fpas. (
-                                 1         ; Serial
-                            604800         ; Refresh
-                             86400         ; Retry
-                           2419200         ; Expire
-                            604800 )       ; Negative Cache TTL
-   ;
-   43.168.192.in-addr.arpa. IN NS kelompok7.fpas.
-   185 IN PTR kelompok7.fpas.
-   ```
-
-   - Creating kelompok7.fpas in roles/wp/templates and adding script configuration
-     - nano roles/wp/templates/kelompok7.fpas
-
-   ```markdown
-   ;
-   ; BIND reverse data file for loopback interface
-   ;
-   $TTL    604800
-   @       IN      SOA     kelompok7.fpas. root.kelompok7.fpas. (
-                                 1         ; Serial
-                            604800         ; Refresh
-                             86400         ; Retry
-                           2419200         ; Expire
-                            604800 )       ; Negative Cache TTL
-   ;
-   @       IN      NS      kelompok7.fpas.
-   @       IN      A      192.168.43.185 
-   news       IN      CNAME      kelompok7.fpas.
-   ```
-
-   - Creating wp.conf.local in roles/wp/templates and adding script configuration
-     - nano roles/wp/templates/wp.conf.local
-
-   ```markdown
-   //
-   // Do any local configuration here
-   //
-   
-   // Consider adding the 1918 zones here, if they are not used in your
-   // organization
-   //include "/etc/bind/zones.rfc1918";
-   
-   zone "kelompok7.fpas"{
-              type master;
-              file "/etc/bind/vm/kelompok7.fpas";
-   };
-   
-   zone "43.168.192.in-addr.arpa"{
-              type master;
-              file "/etc/bind/vm/43.168.192.in-addr.arpa";
-   };
-   ```
-
-   - Creating named.conf.options in roles/wp/templates and adding script configuration
-     - nano roles/wp/templates/named.conf.options
-
-   ```markdown
-   options {
-           directory "/var/cache/bind";
-   
-           // If there is a firewall between you and nameservers you want
-           // to talk to, you may need to fix the firewall to allow multiple
-           // ports to talk.  See http://www.kb.cert.org/vuls/id/800113
-   
-           // If your ISP provided one or more IP addresses for stable
-           // nameservers, you probably want to use them as forwarders.
-           // Uncomment the following block, and insert the addresses replacing
-           // the all-0's placeholder.
-   
-           forwarders {
-              8.8.8.8;
-           };
-   
-           //========================================================================
-           // If BIND logs error messages about the root key being expired,
-           // you will need to update your keys.  See https://www.isc.org/bind-keys
-           //========================================================================
-           //dnssec-validation auto;
-           allow-query{any;};
-           listen-on-v6 { any; };
-   };
-   ```
-
    - Creating resolv.conf in roles/wp/templates and adding script configuration
      - nano roles/wp/templates/resolv.conf
 
@@ -939,8 +736,6 @@ Praktikum dilaksanakan berdasarkan keadaan yang tertera pada FINAL PROJECT, dan 
    ansible-playbook -i hosts install-wp.yml -k
    ```
 
-   
-
 6. Creating install-laravel.yml file and adding configuration
 
    ```markdown
@@ -948,7 +743,7 @@ Praktikum dilaksanakan berdasarkan keadaan yang tertera pada FINAL PROJECT, dan 
    - hosts: laravel
      vars:
        username: 'admin'
-       password: 'admin'
+       password: '123'
        domain: 'laravel.dev' #laravel_1.dev laravel_2.dev laravel_3.dev
      roles:
        - php
@@ -1524,7 +1319,7 @@ Praktikum dilaksanakan berdasarkan keadaan yang tertera pada FINAL PROJECT, dan 
    - hosts: yii
      vars:
        username: 'admin'
-       password: 'admin'
+       password: '123'
        domain: 'yii.dev' #yii_1.dev yii_2.dev yii_3.dev yii_4.dev
      roles:
        - yii
@@ -1638,44 +1433,64 @@ Praktikum dilaksanakan berdasarkan keadaan yang tertera pada FINAL PROJECT, dan 
        'class' => 'yii\db\Connection',
        'dsn' => 'mysql:host=10.0.3.200:3306;dbname=yii',
        'username' => 'admin',
-       'password' => 'admin',
+       'password' => '123',
        'charset' => 'utf8',
    ];
    ```
 
    - Creating yii.conf in roles/yii/templates/yii.conf and adding script configuration
-     - nano roles/yii/templates/yii.conf/yii.conf
+     - nano roles/yii/templates/yii.conf
 
    ```markdown
-   server {
-        listen 80;
-        listen [::]:80;
-   
-        # Log files for Debugging
-        access_log /var/log/nginx/yii-access.log;
-        error_log /var/log/nginx/yii-error.log;
-   
-        # Webroot Directory for Laravel project
-        root /var/www/html/basic/web;
-        index index.php index.html index.htm;
-   
-        # Your Domain Name
-        server_name {{ domain }};
-   
-        location / {
-                try_files $uri $uri/ /index.php?$query_string;
+  server {
+    set $host_path "/var/www/html/basic";
+    #access_log  /www/basic/log/access.log  main;
+
+    server_name  lxc_php7_6.dev www.lxc_php7_6.dev;
+    root   $host_path/web;
+    set $yii_bootstrap "index.php";
+
+    charset utf-8;
+
+    location / {
+        index  index.html $yii_bootstrap;
+        try_files $uri $uri/ /$yii_bootstrap?$args;
+    }
+
+    location ~ ^/(protected|framework|themes/\w+/views) {
+        deny  all;
+    }
+
+    #avoid processing of calls to unexisting static files by yii
+    location ~ \.(js|css|png|jpg|gif|swf|ico|pdf|mov|fla|zip|rar)$ {
+        try_files $uri =404;
+    }
+
+    # pass the PHP scripts to FastCGI server listening on UNIX socket
+    location ~ \.php {
+        fastcgi_split_path_info  ^(.+\.php)(.*)$;
+
+        #let yii catch the calls to unexising PHP files
+        set $fsn /$yii_bootstrap;
+        if (-f $document_root$fastcgi_script_name){
+            set $fsn $fastcgi_script_name;
         }
-   
-        # PHP-FPM Configuration Nginx
-        location ~ \.php$ {
-                try_files $uri =404;
-                fastcgi_split_path_info ^(.+\.php)(/.+)$;
-                fastcgi_pass 127.0.0.1:9001;
-                fastcgi_index index.php;
-                fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
-                include fastcgi_params;
-        }
-   }
+       fastcgi_pass   unix:/run/php/php7.4-fpm.sock;
+        include fastcgi_params;
+        fastcgi_param  SCRIPT_FILENAME  $document_root$fsn;
+
+       #PATH_INFO and PATH_TRANSLATED can be omitted, but RFC 3875 specifies them for CGI
+        fastcgi_param  PATH_INFO        $fastcgi_path_info;
+        fastcgi_param  PATH_TRANSLATED  $document_root$fsn;
+    }
+
+    # prevent nginx from serving dotfiles (.htaccess, .svn, .git, etc.)
+    location ~ /\. {
+        deny all;
+        access_log off;
+        log_not_found off;
+    }
+ }
    ```
 
    - Running command
@@ -1692,37 +1507,37 @@ Praktikum dilaksanakan berdasarkan keadaan yang tertera pada FINAL PROJECT, dan 
    
    - If we have installed yii, wordpress, laravel, codelgniter which requirements needed in each containers enroll IP Address ubuntu server at /etc/hosts computer local host
    
-     ![9a15c9fd-bebc-409f-8c46-f6e648261b38](https://user-images.githubusercontent.com/93067781/151665919-3cc6e67b-a243-4548-9d3f-fba3361eac25.jpg)
-
+   ![WhatsApp Image 2022-02-03 at 5 20 18 AM](https://user-images.githubusercontent.com/61863147/152255405-027262c7-36d8-4e2a-9b2a-d2c4b0d408e4.jpeg)
 
 
 ### ***Hasil Screenshoot***
 
-**Laravel** (kelompok7.fpas/)
+**Laravel** (kelompok06.fpas/)
 
-![Laravel SS1](https://user-images.githubusercontent.com/93067781/151578224-ca92d3a2-544d-40cf-9369-5b5e381b8753.jpg)
+![WhatsApp Image 2022-02-03 at 5 20 18 AM](https://user-images.githubusercontent.com/61863147/152255424-9bd7d1ac-d7bd-4f8f-9354-4ec2cae162c5.jpeg)
 
 
 
-**Wordpress** (news.kelompok7.fpas/)
+
+**Wordpress** (news.kelompok06.fpas/)
 
 ![wordpress1](https://user-images.githubusercontent.com/93067781/151665267-7a89a147-49e6-4301-8f3f-dd0024ea3a1a.jpg)
 
 
 
-**Codelgniter** (kelompok7.fpas/app)
+**Codelgniter** (kelompok06.fpas/app)
 
 ![Codelnigter SS1](https://user-images.githubusercontent.com/93067781/151578275-839a2a4c-db49-41e6-a946-2a7c1ce28fca.jpg)
 
-**YII** (kelompok7.fpas/product)
+**YII** (kelompok06.fpas/product)
 
 ![YII SS1](https://user-images.githubusercontent.com/93067781/151578288-0856a03e-c9fa-4fd7-b3cb-f2746d75bbe4.jpg)
 
 - [x] Setting load balancer vm hosts ubuntu nano server 
 
   ```markdown
-  nano server /etc/nginx/sites-available/kelompok7.fpas
-  ln -s /etc/nginx/sites-available/kelompok7.fpas /etc/nginx/sites-enabled/
+  nano server /etc/nginx/sites-available/kelompok06.fpas
+  ln -s /etc/nginx/sites-available/kelompok06.fpas /etc/nginx/sites-enabled/
   ```
 
   ![WhatsApp Image 2022-01-30 at 14 10 03](https://user-images.githubusercontent.com/93067781/151691513-1fa82f64-ca6a-4f04-9850-c05433713924.jpeg)
