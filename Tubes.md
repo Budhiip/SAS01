@@ -26,40 +26,28 @@ Praktikum dilaksanakan berdasarkan keadaan yang tertera pada FINAL PROJECT, dan 
     - Creating lxc container, start and entering container
 
     ```markdown
-    lxc-create -n lxc_db_server -t download -- --dist debian --release buster --arch amd64 --force-cache --no-validate --server images.linuxcontainers.org
-    lxc-create -n lxc_php5_1 -t download -- --dist debian --release buster --arch amd64 --force-cache --no-validate --server images.linuxcontainers.org
-    lxc-create -n lxc_php5_2 -t download -- --dist debian --release buster --arch amd64 --force-cache --no-validate --server images.linuxcontainers.org
-    lxc-create -n lxc_php7_1 -t download -- --dist ubuntu --release focal --arch amd64 --force-cache --no-validate --server images.linuxcontainers.org
-    lxc-create -n lxc_php7_2 -t download -- --dist ubuntu --release focal --arch amd64 --force-cache --no-validate --server images.linuxcontainers.org
-    lxc-create -n lxc_php7_3 -t download -- --dist ubuntu --release focal --arch amd64 --force-cache --no-validate --server images.linuxcontainers.org
-    lxc-create -n lxc_php7_4 -t download -- --dist ubuntu --release focal --arch amd64 --force-cache --no-validate --server images.linuxcontainers.org
-    lxc-create -n lxc_php7_5 -t download -- --dist ubuntu --release focal --arch amd64 --force-cache --no-validate --server images.linuxcontainers.org
-    lxc-create -n lxc_php7_6 -t download -- --dist ubuntu --release focal --arch amd64 --force-cache --no-validate --server images.linuxcontainers.org
-    lxc-start -n lxc_db_server
-    lxc-start -n lxc_php5_1 
-    lxc_start -n lxc_php5_2
-    lxc-start -n lxc_php7_1 
-    lxc_start -n lxc_php7_2
-    lxc_start -n lxc_php7_3
-    lxc_start -n lxc_php7_4
-    lxc_start -n lxc_php7_5
-    lxc_start -n lxc_php7_6
+    lxc-create -n lxc_mariadb -t download -- --dist debian --release buster --arch amd64 --force-cache --no-validate --server images.linuxcontainers.org
+    lxc-create -n debian_php5.6 -t download -- --dist debian --release buster --arch amd64 --force-cache --no-validate --server images.linuxcontainers.org
+    lxc-create -n debian_php5.6_2 -t download -- --dist debian --release buster --arch amd64 --force-cache --no-validate --server images.linuxcontainers.org
+    lxc-create -n ubuntu_php7.4 -t download -- --dist ubuntu --release focal --arch amd64 --force-cache --no-validate --server images.linuxcontainers.org
+    lxc-create -n ubuntu_php7.4_2 -t download -- --dist ubuntu --release focal --arch amd64 --force-cache --no-validate --server images.linuxcontainers.org
+    lxc-create -n ubuntu_php7.4_3 -t download -- --dist ubuntu --release focal --arch amd64 --force-cache --no-validate --server images.linuxcontainers.org
+    lxc-create -n ubuntu_php7.4_4 -t download -- --dist ubuntu --release focal --arch amd64 --force-cache --no-validate --server images.linuxcontainers.org
+    lxc-create -n ubuntu_php7.4_5 -t download -- --dist ubuntu --release focal --arch amd64 --force-cache --no-validate --server images.linuxcontainers.org
+    lxc-create -n ubuntu_php7.4_6 -t download -- --dist ubuntu --release focal --arch amd64 --force-cache --no-validate --server images.linuxcontainers.org
+    lxc-start -n lxc_mariadb
+    lxc-start -n debian_php5.6
+    lxc_start -n debian_php5.6_2
+    lxc-start -n ubuntu_php7.4
+    lxc_start -n ubuntu_php7.4_2
+    lxc_start -n ubuntu_php7.4_3
+    lxc_start -n ubuntu_php7.4_4
+    lxc_start -n ubuntu_php7.4_5
+    lxc_start -n ubuntu_php7.4_6
     apt update; apt upgrade -y; apt install -y nano
     ```
 
     - Setting all of containers auto start
-
-    ```markdown
-    echo "lxc.start.auto = 1" >> /var/lib/lxc/lxc_db_server/config
-    echo "lxc.start.auto = 1" >> /var/lib/lxc/lxc_php5_1/config
-    echo "lxc.start.auto = 1" >> /var/lib/lxc/lxc_php5_2/config
-    echo "lxc.start.auto = 1" >> /var/lib/lxc/lxc_php7_1/config
-    echo "lxc.start.auto = 1" >> /var/lib/lxc/lxc_php7_2/config
-    echo "lxc.start.auto = 1" >> /var/lib/lxc/lxc_php7_3/config
-    echo "lxc.start.auto = 1" >> /var/lib/lxc/lxc_php7_4/config
-    echo "lxc.start.auto = 1" >> /var/lib/lxc/lxc_php7_5/config
-    echo "lxc.start.auto = 1" >> /var/lib/lxc/lxc_php7_6/config
-    ```
 
     - Setting hosts and adding IP Address and Domain for each containers in VM ubuntu server
 
