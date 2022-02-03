@@ -1475,7 +1475,7 @@ Praktikum dilaksanakan berdasarkan keadaan yang tertera pada FINAL PROJECT, dan 
 
 **Laravel** (kelompok06.fpas/)
 
-![Screenshot (419)](https://user-images.githubusercontent.com/61863147/152293606-1e9323ed-cdf8-41ee-8ecc-4d6c3f658d3f.png)
+![Screenshot (426)](https://user-images.githubusercontent.com/61863147/152294352-f0fd0ff9-0d8c-49c7-83d7-f47a195ba690.png)
 
 
 **Codelgniter** (kelompok06.fpas/app)
@@ -1485,6 +1485,7 @@ Praktikum dilaksanakan berdasarkan keadaan yang tertera pada FINAL PROJECT, dan 
 
 **YII** (kelompok06.fpas/product)
 
+![Screenshot (423)](https://user-images.githubusercontent.com/61863147/152294466-0ae1a543-0e69-423b-9cce-d688731d2378.png)
 
 
 - [x] Setting load balancer vm hosts ubuntu nano server 
@@ -1495,73 +1496,3 @@ Praktikum dilaksanakan berdasarkan keadaan yang tertera pada FINAL PROJECT, dan 
   ```
 
 
-
-
-
-### ***Soal Analisa***
-
-1. Berapa nilai rata - rata througput untuk setiap website yang dihasilkan dari load testing?
-2. Berapa nilai rata - rata jumlah user yang dapat dilayani setiap detik untuk setiap website yang dihasilkan dari load testing?
-3. Bagaimana cara mengurangi nilai througput dan meningkatkan nilai jumlah user yang dapat dilayani setiap detik untuk skema yang telah dibuat ? Sebutkan faktor faktor yang mempengaruhi !
-
-#### ***Jawab***
-
-
-1. Rata-rata throughput
-   - 50 user
-        - news.kelompok7.fpas : 207.5/s
-        - kelompok7.fpas/ : 212.8/s
-        - kelompok7.fpas/app : 208.3/s
-        - kelompok7.fpas/product : 210.1/s
-   - 150 user
-        - news.kelompok7.fpas : 152/s
-        - kelompok7.fpas/ : 176.3/s
-        - kelompok7.fpas/app :  149/s
-        - kelompok7.fpas/product : 165.3/s
-   - 300 user
-     * news.kelompok7.fpas :  164/s
-     * kelompok7.fpas/ : 171.3/s
-     * kelompok7.fpas/app : 168/s
-     * kelompok7.fpas/product : 170/s
-   - 500 user
-        * news.kelompok7.fpas : 160.6/s
-        * kelompok7.fpas/ : 160.7/s
-        * kelompok7.fpas/app : 160.6/s
-        * kelompok7.fpas/product : 170/s
-
-2. Rata - rata jumlah user yang dapat dilayani setiap detik
-
-   - 50 user
-     - news.kelompok7.fpas : 17
-     - kelompok7.fpas/ : 16
-     - kelompok7.fpas/app : 6
-     - kelompok7.fpas/product : 6
-   - 150 user
-     - news.kelompok7.fpas : 70
-     - kelompok7.fpas/ : 82
-     - kelompok7.fpas/app :  13
-     - kelompok7.fpas/product : 13
-   - 300 user
-     * news.kelompok7.fpas :  51
-     * kelompok7.fpas/ : 48
-     * kelompok7.fpas/app : 19
-     * kelompok7.fpas/product : 15
-
-   - 500 user
-     * news.kelompok7.fpas : 28
-     * kelompok7.fpas/ : 134
-     * kelompok7.fpas/app : 7
-     * kelompok7.fpas/product : 6
-
-3. Untuk meningkatkan jumlah user pada layanan web server dapat dilakukan dengan beberapa hal yaitu :
-    - server
-      1. meningkatkan atau mengupdate hardware dengan peforma tinggi
-      2. menambah container baru pada load balancer
-      3. mengupdate sistem operasi yang terbaru secara berkala
-      4. Menghapus layanan yang tidak perlu
-      5. optimasi database
-      6. meningkatkan kualitas atau kecepatan jaringan internet
-     - website
-          1. menghapus plugin yang tidak perlu
-          1. optimasi gambar
-          1. menggunakan plugin caching
