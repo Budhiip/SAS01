@@ -1494,5 +1494,8 @@ Praktikum dilaksanakan berdasarkan keadaan yang tertera pada FINAL PROJECT, dan 
   nano server /etc/nginx/sites-available/vm.local
   ln -s /etc/nginx/sites-available/vm.local /etc/nginx/sites-enabled/
   ```
+<img width="512" alt="aa" src="https://user-images.githubusercontent.com/61863147/152302928-75694892-716b-49e0-827c-cb0385f095ac.PNG">
+<img width="523" alt="abb" src="https://user-images.githubusercontent.com/61863147/152302939-eadf92c3-33dc-46b6-86fd-9127cb4695f6.PNG">
+<img width="506" alt="ac" src="https://user-images.githubusercontent.com/61863147/152302953-bb5ce3b7-e289-43d8-97f5-c64079aa546b.PNG">
 
 
