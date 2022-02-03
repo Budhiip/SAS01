@@ -1491,8 +1491,8 @@ Praktikum dilaksanakan berdasarkan keadaan yang tertera pada FINAL PROJECT, dan 
 - [x] Setting load balancer vm hosts ubuntu nano server 
 
   ```markdown
-  nano server /etc/nginx/sites-available/kelompok06.fpas
-  ln -s /etc/nginx/sites-available/kelompok06.fpas /etc/nginx/sites-enabled/
+  nano server /etc/nginx/sites-available/vm.local
+  ln -s /etc/nginx/sites-available/vm.local /etc/nginx/sites-enabled/
   ```
 
 
