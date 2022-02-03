@@ -483,7 +483,7 @@ Praktikum dilaksanakan berdasarkan keadaan yang tertera pada FINAL PROJECT, dan 
    - Creating main.yml in roles/wp/handlers and adding script configuration
      - nano roles/wp/handlers
 
-   ```markdown
+   ```
    ---
    - name: restart php
      become: yes
@@ -501,7 +501,7 @@ Praktikum dilaksanakan berdasarkan keadaan yang tertera pada FINAL PROJECT, dan 
    - Creating main.yml in roles/wp/tasks and adding script configuration
      - nano roles/wp/tasks
 
-   ```markdown
+  ```
   ---
   - name: delete apt chache
   become: yes
@@ -576,12 +576,13 @@ Praktikum dilaksanakan berdasarkan keadaan yang tertera pada FINAL PROJECT, dan 
     command: phpenmod mbstring
     notify:
       - restart php
-   ```
+```
+
 
    - Creating wp.conf in roles/wp/templates and adding script configuration
      - nano roles/wp/templates/wp.conf
 
-   ```markdown
+   ```
    <?php
    /**
     * The base configuration for WordPress
@@ -604,13 +605,13 @@ Praktikum dilaksanakan berdasarkan keadaan yang tertera pada FINAL PROJECT, dan 
    
    // * MySQL settings - You can get this info from your web host * //
    /** The name of the database for WordPress */
-   define( 'DB_NAME', 'news' );
+   define( 'DB_NAME', 'blog' );
    
    /** MySQL database username */
    define( 'DB_USER', 'admin' );
    
    /** MySQL database password */
-   define( 'DB_PASSWORD', 'admin' );
+   define( 'DB_PASSWORD', '123' );
    
    /** MySQL hostname */
    define( 'DB_HOST', '10.0.3.100:3306' );
@@ -680,7 +681,7 @@ Praktikum dilaksanakan berdasarkan keadaan yang tertera pada FINAL PROJECT, dan 
    - Creating wp.local in roles/wp/templates and adding script configuration
      - nano roles/wp/templates/wp.local
 
-   ```markdown
+   ```
    server {
         listen 80;
         listen [::]:80;
@@ -714,7 +715,7 @@ Praktikum dilaksanakan berdasarkan keadaan yang tertera pada FINAL PROJECT, dan 
 
    - Running command
 
-   ```markdown
+   ```
    ansible-playbook -i hosts install-wp.yml -k
    ```
 
@@ -762,7 +763,7 @@ Praktikum dilaksanakan berdasarkan keadaan yang tertera pada FINAL PROJECT, dan 
    - Creating main.yml adding script configuration
      - nano roles/lv/tasks/main.yml
 
-   ```markdown
+   ```
    ---
    - name: delete apt chache
      become: yes
@@ -840,7 +841,7 @@ Praktikum dilaksanakan berdasarkan keadaan yang tertera pada FINAL PROJECT, dan 
 
    - nano roles/lv/templates/env.template
 
-   ```markdown
+   ```
    APP_NAME=Laravel
    APP_ENV=local
    APP_KEY=
@@ -897,7 +898,7 @@ Praktikum dilaksanakan berdasarkan keadaan yang tertera pada FINAL PROJECT, dan 
 
    - nano roles/lv/templates/lv.conf
 
-   ```markdown
+   ```
    server {
         listen 80;
         listen [::]:80;
@@ -1335,9 +1336,9 @@ Praktikum dilaksanakan berdasarkan keadaan yang tertera pada FINAL PROJECT, dan 
    ```
 
    - Creating main.yml in roles/yii/tasks and adding script configuration
+     
      - nano roles/yii/tasks/main.yml
-
-   ```markdown
+```
    ---
    - name: delete apt chache
      become: yes
@@ -1403,14 +1404,13 @@ Praktikum dilaksanakan berdasarkan keadaan yang tertera pada FINAL PROJECT, dan 
        regexp: '.*{{ domain }}$'
        line: "127.0.0.1 {{ domain }}"
        state: present
-   ```
-
-
+   ```     
+       
    - Creating yii.conf in roles/yii/templates/yii.conf and adding script configuration
-     - nano roles/yii/templates/yii.conf
+   
+   - nano roles/yii/templates/yii.conf
 
-   ```markdown
-  server {
+``` server {
     set $host_path "/var/www/html/basic";
     #access_log  /www/basic/log/access.log  main;
 
@@ -1451,27 +1451,20 @@ Praktikum dilaksanakan berdasarkan keadaan yang tertera pada FINAL PROJECT, dan 
         fastcgi_param  PATH_INFO        $fastcgi_path_info;
         fastcgi_param  PATH_TRANSLATED  $document_root$fsn;
     }
-
     # prevent nginx from serving dotfiles (.htaccess, .svn, .git, etc.)
     location ~ /\. {
         deny all;
         access_log off;
         log_not_found off;
     }
- }
    ```
-
-   - Running command
-
-   ```markdown
-   ansible-playbook -i hosts install-yii.yml -k
-   ```
+   
+- Running command ```ansible-playbook -i hosts install-yii.yml -k ```
 
    - Setting proxy pass at vm ubuntu server
-
-   ```markdown
+```
    /etc/nginx/sites-available
-   ```
+```   
    
    - If we have installed yii, wordpress, laravel, codelgniter which requirements needed in each containers enroll IP Address ubuntu server at /etc/hosts computer local host
    
@@ -1482,24 +1475,17 @@ Praktikum dilaksanakan berdasarkan keadaan yang tertera pada FINAL PROJECT, dan 
 
 **Laravel** (kelompok06.fpas/)
 
-![WhatsApp Image 2022-02-03 at 5 20 18 AM](https://user-images.githubusercontent.com/61863147/152255424-9bd7d1ac-d7bd-4f8f-9354-4ec2cae162c5.jpeg)
-
-
-
-
-**Wordpress** (news.kelompok06.fpas/)
-
-![wordpress1](https://user-images.githubusercontent.com/93067781/151665267-7a89a147-49e6-4301-8f3f-dd0024ea3a1a.jpg)
-
+![Screenshot (419)](https://user-images.githubusercontent.com/61863147/152293606-1e9323ed-cdf8-41ee-8ecc-4d6c3f658d3f.png)
 
 
 **Codelgniter** (kelompok06.fpas/app)
 
-![Codelnigter SS1](https://user-images.githubusercontent.com/93067781/151578275-839a2a4c-db49-41e6-a946-2a7c1ce28fca.jpg)
+![Screenshot (424)](https://user-images.githubusercontent.com/61863147/152293659-c22a7ccc-3fd3-41a9-a591-e04914232a1a.png)
+
 
 **YII** (kelompok06.fpas/product)
 
-![YII SS1](https://user-images.githubusercontent.com/93067781/151578288-0856a03e-c9fa-4fd7-b3cb-f2746d75bbe4.jpg)
+
 
 - [x] Setting load balancer vm hosts ubuntu nano server 
 
@@ -1507,12 +1493,6 @@ Praktikum dilaksanakan berdasarkan keadaan yang tertera pada FINAL PROJECT, dan 
   nano server /etc/nginx/sites-available/kelompok06.fpas
   ln -s /etc/nginx/sites-available/kelompok06.fpas /etc/nginx/sites-enabled/
   ```
-
-  ![WhatsApp Image 2022-01-30 at 14 10 03](https://user-images.githubusercontent.com/93067781/151691513-1fa82f64-ca6a-4f04-9850-c05433713924.jpeg)
-
-  ![aa59a3faf8-3a59-4afc-9f03-baab37fe8844](https://user-images.githubusercontent.com/93067781/151691395-27e78a6c-d4fb-423f-9739-f4e7049d121e.jpg)
-
-  ![aa514c346c-0a31-4f71-8e83-eac11a6441a7](https://user-images.githubusercontent.com/93067781/151691400-5f695514-a865-4108-bc36-36d3c05195f3.jpg)
 
 
 
@@ -1526,7 +1506,6 @@ Praktikum dilaksanakan berdasarkan keadaan yang tertera pada FINAL PROJECT, dan 
 
 #### ***Jawab***
 
-![WhatsApp Image 2022-01-30 at 16 43 45](https://user-images.githubusercontent.com/93067781/151696900-e57f5fa1-6571-4622-954c-0e27926d89cc.jpeg)![WhatsApp Image 2022-01-30 at 15 58 52](https://user-images.githubusercontent.com/93067781/151696901-be0cd762-abc7-4593-bc46-42f9c08bb44d.jpeg)![WhatsApp Image 2022-01-30 at 16 00 00](https://user-images.githubusercontent.com/93067781/151696905-c09df780-ad98-499c-980f-214e5e59e5cd.jpeg)![WhatsApp Image 2022-01-30 at 16 00 37](https://user-images.githubusercontent.com/93067781/151696907-bbcf6957-3307-4b0d-b2f6-07b02341cbd1.jpeg)
 
 1. Rata-rata throughput
    - 50 user
