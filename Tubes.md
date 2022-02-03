@@ -306,11 +306,11 @@ Praktikum dilaksanakan berdasarkan keadaan yang tertera pada FINAL PROJECT, dan 
 4. Creating install-ci.yml file and adding configuration
 
    ```markdown
-   hosts: php5
+   hosts: ci
    vars:
      git_url: 'https://github.com/aldonesia/sas-ci'
      destdir: '/var/www/html/ci'
-     domain: 'lxc_php5_1.dev' #lxc_php5_2.dev
+     domain: 'lxc_php5.dev' 
    roles:
       - app
    ```
@@ -435,7 +435,7 @@ Praktikum dilaksanakan berdasarkan keadaan yang tertera pada FINAL PROJECT, dan 
    ```markdown
    server {
      listen 80;
-     server_name {{ domain }};
+     server_name {{servernme}};
      root /var/www/html/wp;
      index index.php;
      location / {
@@ -465,8 +465,8 @@ Praktikum dilaksanakan berdasarkan keadaan yang tertera pada FINAL PROJECT, dan 
    - hosts: wordpress
      vars:
        username: 'admin'
-       password: 'admin' #DON'T FORGET TO CHANGE
-       domain: 'wordpress.dev' #wordpress_1.dev wordpress_2.dev wordpress_3.dev
+       password: '123' 
+       domain: 'lxc_php7.dev'
      roles:
        - wp
    ```
@@ -613,7 +613,7 @@ Praktikum dilaksanakan berdasarkan keadaan yang tertera pada FINAL PROJECT, dan 
    define( 'DB_PASSWORD', 'admin' );
    
    /** MySQL hostname */
-   define( 'DB_HOST', '10.0.3.200:3306' );
+   define( 'DB_HOST', '10.0.3.100:3306' );
    
    /** Database charset to use in creating database tables. */
    define( 'DB_CHARSET', 'utf8' );
@@ -710,13 +710,6 @@ Praktikum dilaksanakan berdasarkan keadaan yang tertera pada FINAL PROJECT, dan 
                 include fastcgi_params;
         }
    }
-   ```
-
-   - Creating resolv.conf in roles/wp/templates and adding script configuration
-     - nano roles/wp/templates/resolv.conf
-
-   ```markdown
-   nameserver 192.168.43.185
    ```
 
    - Running command
@@ -859,11 +852,11 @@ Praktikum dilaksanakan berdasarkan keadaan yang tertera pada FINAL PROJECT, dan 
    LOG_LEVEL=debug
    
    DB_CONNECTION=mysql
-   DB_HOST=10.0.3.200
+   DB_HOST=10.0.3.100
    DB_PORT=3306
    DB_DATABASE=landing
    DB_USERNAME=admin
-   DB_PASSWORD=admin
+   DB_PASSWORD=123
    
    BROADCAST_DRIVER=log
    CACHE_DRIVER=file
@@ -1309,7 +1302,7 @@ Praktikum dilaksanakan berdasarkan keadaan yang tertera pada FINAL PROJECT, dan 
      vars:
        username: 'admin'
        password: '123'
-       domain: 'yii.dev' #yii_1.dev yii_2.dev yii_3.dev yii_4.dev
+       domain: 'lxc_php7_11.dev'
      roles:
        - yii
    ```
@@ -1412,20 +1405,6 @@ Praktikum dilaksanakan berdasarkan keadaan yang tertera pada FINAL PROJECT, dan 
        state: present
    ```
 
-   - Creating env.template in roles/yii/templates and adding script configuration
-     - nano roles/yii/templates/env.template
-
-   ```markdown
-   <?php
-   
-   return [
-       'class' => 'yii\db\Connection',
-       'dsn' => 'mysql:host=10.0.3.200:3306;dbname=yii',
-       'username' => 'admin',
-       'password' => '123',
-       'charset' => 'utf8',
-   ];
-   ```
 
    - Creating yii.conf in roles/yii/templates/yii.conf and adding script configuration
      - nano roles/yii/templates/yii.conf
