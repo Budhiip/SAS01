@@ -53,7 +53,8 @@ Praktikum dilaksanakan berdasarkan keadaan yang tertera pada FINAL PROJECT, dan 
 
       - nano /etc/hosts
 
-      
+      ![image](https://user-images.githubusercontent.com/61863147/152260614-792107ac-49bb-43d4-aec5-354ebbbf5b9c.png)
+
 
 
     - Setting IP Static for all off containers until this allow picture
@@ -732,7 +733,7 @@ Praktikum dilaksanakan berdasarkan keadaan yang tertera pada FINAL PROJECT, dan 
      vars:
        username: 'admin'
        password: '123'
-       domain: 'laravel.dev' #laravel_1.dev laravel_2.dev laravel_3.dev
+       domain: 'lxc_php7_2.dev'
      roles:
        - php
        - lv
